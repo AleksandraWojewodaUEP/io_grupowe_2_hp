@@ -11,8 +11,9 @@ $${\color{green}Dom Slytherin}$$
 ![img](/roszyk_task_1/imgs/hagrid.jpg)
 ### Zasady
 ```python
-Strategia nazywania gałęzi to nazwisko\_task\_numer.
+Strategia nazywania gałęzi to nazwisko_task_numer.
 ```
 **Prefektem** domu *Slytherin* jest Mikołaj Tym.
+Hubert oraz Tomasz są czarodziejami i znają niezłe zaklęcia.
 
 ~~Nie latać na miotle po szkole!~~
