@@ -35,10 +35,12 @@ def wybierz_sowe_zwroc_koszt(potwierdzenie: bool, odleglosc: str, typ: str, spec
     def dodaj_koszty(cennik):
         for waluta, cena in cennik.items():
             koszt[waluta] += cena
-
-    if potwierdzenie:
-        dodaj_koszty(koszty["potwierdzenie"])
-    dodaj_koszty(koszty[typ][odleglosc])
-    dodaj_koszty(koszty["specjalna"][specjalna])
+    try:
+        if potwierdzenie:
+            dodaj_koszty(koszty["potwierdzenie"])
+        dodaj_koszty(koszty[typ][odleglosc])
+        dodaj_koszty(koszty["specjalna"][specjalna])
+    except KeyError:
+        raise Exception("Podaj prawidłowe dane.")
 
     return koszt
