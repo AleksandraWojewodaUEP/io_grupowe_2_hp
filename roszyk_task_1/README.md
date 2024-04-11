@@ -14,6 +14,7 @@ $${\color{green}Dom Slytherin}$$
 Strategia nazywania gałęzi to nazwisko_task_numer.
 ```
 **Prefektem** domu *Slytherin* jest Mikołaj Tym.
+
 Hubert oraz Tomasz są czarodziejami i znają niezłe zaklęcia.
 
 ~~Nie latać na miotle po szkole!~~
