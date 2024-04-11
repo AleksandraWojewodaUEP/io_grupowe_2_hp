@@ -9,4 +9,4 @@ def wyslij_sowe(adresat, tresc):
     else:
         return False
 
-print(wyslij_sowe("Hagrid", "Wpadamy na herabtkę"))
+# print(wyslij_sowe("Hagrid", "Wpadamy na herabtkę"))
