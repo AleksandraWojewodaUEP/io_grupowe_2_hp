@@ -77,3 +77,28 @@ def wybierz_sowe_zwroc_koszt(potwierdzenie: bool, odleglosc: str, typ: str, spec
         raise Exception("Podaj prawidłowe dane.")
 
     return koszt
+
+def waluta_dict_na_str(waluta_dict):
+    wynik = []
+    for moneta, ilosc in waluta_dict.items():
+        if ilosc != 0:
+            wynik.append(f"{ilosc} {moneta}")
+
+    return " ".join(wynik)
+
+
+przyklad1 = {
+    "galeon" : 0,
+    "sykl" : 0,
+    "knut" : 13
+}
+
+przyklad2 = {
+    "galeon" : 13,
+    "sykl" : 2,
+    "knut" : 13
+}
+
+
+print(waluta_dict_na_str(przyklad1))
+print(waluta_dict_na_str(przyklad2))
