@@ -8,7 +8,7 @@ $${\color{green}Dom Slytherin}$$
 3. [Hubert Roszyk](https://github.com/hvbcix) 
 
 ### Arcywróg
-![img](/roszyk_task_1/imgs/hagrid.jpg)
+![img](imgs/hagrid.jpg)
 ### Zasady
 ```python
 Strategia nazywania gałęzi to nazwisko_task_numer.
