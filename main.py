@@ -30,7 +30,7 @@ def licz_sume(dane):
 dane = {'galeon': 0, 'sykl': 100, 'knut': 106}
 wynik = licz_sume(dane)
 
-def wybierz_sowe_zwroc_koszt(potwierdzenie: bool, odleglosc: str, typ: str, specjalna: str):
+def wybierz_sowe_zwroc_koszt(potwierdzenie: bool, odleglosc: str, typ: str, specjalna):
     """
     Obliczanie kosztu wysłania sowy.
 
@@ -86,3 +86,17 @@ def waluta_dict_na_str(waluta_dict):
             wynik.append(f"{ilosc} {moneta}")
 
     return " ".join(wynik)
+
+def waluta_str_na_dict(currency_text: str) -> dict:
+    """
+    Convert string with currencies to a dictionary.
+
+    :param currency_text: text that contains currency values in format '12 galeon 5 sykl'.
+    :return: dict with currencies.
+    """
+    currency_dict = {}
+    texts = currency_text.split(" ")
+    for i in range(1, len(texts), 2):
+        currency_dict[texts[i]] = texts[i - 1]
+
+    return currency_dict

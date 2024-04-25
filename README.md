@@ -26,3 +26,4 @@ $${\color{green}Dom Slytherin}$$
 3. Task3 - Hubert Roszyk
 4. Task4 - Szymon Pilarczyk
 5. Task5 - Mikołaj Tym
+6. Task6 - Mikołaj Tym
