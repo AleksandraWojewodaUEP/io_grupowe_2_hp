@@ -1,16 +1,17 @@
 import time
 import random
 
+
 def wyslij_sowe(adresat, tresc):
     print(f"Twój list do {adresat} już leci!")
     time.sleep(1)
-    if random.uniform(0,1) <= 0.85:
+    if random.uniform(0, 1) <= 0.85:
         return True
     else:
         return False
 
+
 def licz_sume(dane):
-  
     if 'galeon' not in dane or 'sykl' not in dane or 'knut' not in dane:
         return "Brak wymaganych danych"
 
@@ -27,8 +28,10 @@ def licz_sume(dane):
 
     return {'galeon': suma_galeon, 'sykl': suma_sykl, 'knut': suma_knut}
 
+
 dane = {'galeon': 0, 'sykl': 100, 'knut': 106}
 wynik = licz_sume(dane)
+
 
 def wybierz_sowe_zwroc_koszt(potwierdzenie: bool, odleglosc: str, typ: str, specjalna):
     """
@@ -62,9 +65,11 @@ def wybierz_sowe_zwroc_koszt(potwierdzenie: bool, odleglosc: str, typ: str, spec
     }
 
     koszt = {"knut": 0, "sykl": 0, "galeon": 0}
+
     def dodaj_koszty(cennik):
         for waluta, cena in cennik.items():
             koszt[waluta] += cena
+
     try:
         if potwierdzenie:
             dodaj_koszty(koszty["potwierdzenie"])
@@ -74,6 +79,7 @@ def wybierz_sowe_zwroc_koszt(potwierdzenie: bool, odleglosc: str, typ: str, spec
         raise Exception("Podaj prawidłowe dane.")
 
     return koszt
+
 
 def waluta_dict_na_str(waluta_dict):
     sorted_dict = {"galeon": waluta_dict["galeon"],
@@ -86,6 +92,7 @@ def waluta_dict_na_str(waluta_dict):
             wynik.append(f"{ilosc} {moneta}")
 
     return " ".join(wynik)
+
 
 def waluta_str_na_dict(currency_text: str) -> dict:
     """
@@ -100,3 +107,11 @@ def waluta_str_na_dict(currency_text: str) -> dict:
         currency_dict[texts[i]] = texts[i - 1]
 
     return currency_dict
+
+
+def nadaj_sowe(adresat: str, tresc: str, potwierdzenie: bool, odleglosc: str, typ: str, specjalna: str):
+    cost = wybierz_sowe_zwroc_koszt(potwierdzenie=potwierdzenie, odleglosc=odleglosc, typ=typ, specjalna=specjalna)
+    cost = waluta_dict_na_str(cost)
+    confirmation = "TAK" if potwierdzenie else "NIE"
+    with open("poczta_nadania_lista.csv", 'a') as file:
+        file.write(f"{adresat},{tresc},{cost},{confirmation}\n")

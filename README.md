@@ -19,6 +19,16 @@ $${\color{green}Dom Slytherin}$$
 3. Hubert, Tomasz, Szymon są czarodziejami i znają niezłe zaklęcia.
 4. ~~Nie latać na miotle po szkole!~~
 
+## Tasks
+
+1. Task1 - Hubert Roszyk
+2. Task3 - Tomasz Olender 
+3. Task4 - Mikołaj Tym
+4. Task5 - Szymon Pilarczyk
+5. Task6 - Mikołaj Tym
+6. Task7 - Mikołaj Tym
+7. Task8 - Mikołaj Tym
+
 ## Tests
 
 1. Task1 - Mikołaj Tym
@@ -27,3 +37,5 @@ $${\color{green}Dom Slytherin}$$
 4. Task4 - Szymon Pilarczyk
 5. Task5 - Mikołaj Tym
 6. Task6 - Mikołaj Tym
+7. Task7 - Mikołaj Tym
+8. Task8 - Mikołaj Tym
