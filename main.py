@@ -9,8 +9,6 @@ def wyslij_sowe(adresat, tresc):
     else:
         return False
 
-# print(wyslij_sowe("Hagrid", "Wpadamy na herabtkę"))
-
 def licz_sume(dane):
   
     if 'galeon' not in dane or 'sykl' not in dane or 'knut' not in dane:
@@ -31,7 +29,6 @@ def licz_sume(dane):
 
 dane = {'galeon': 0, 'sykl': 100, 'knut': 106}
 wynik = licz_sume(dane)
-print(wynik)
 
 def wybierz_sowe_zwroc_koszt(potwierdzenie: bool, odleglosc: str, typ: str, specjalna: str):
     """
@@ -79,26 +76,13 @@ def wybierz_sowe_zwroc_koszt(potwierdzenie: bool, odleglosc: str, typ: str, spec
     return koszt
 
 def waluta_dict_na_str(waluta_dict):
+    sorted_dict = {"galeon": waluta_dict["galeon"],
+                   "sykl": waluta_dict["sykl"],
+                   "knut": waluta_dict["knut"]}
+
     wynik = []
-    for moneta, ilosc in waluta_dict.items():
+    for moneta, ilosc in sorted_dict.items():
         if ilosc != 0:
             wynik.append(f"{ilosc} {moneta}")
 
     return " ".join(wynik)
-
-
-przyklad1 = {
-    "galeon" : 0,
-    "sykl" : 0,
-    "knut" : 13
-}
-
-przyklad2 = {
-    "galeon" : 13,
-    "sykl" : 2,
-    "knut" : 13
-}
-
-
-print(waluta_dict_na_str(przyklad1))
-print(waluta_dict_na_str(przyklad2))
