@@ -1,4 +1,4 @@
-from main import waluta_dict_na_str, waluta_str_na_dict, nadaj_sowe
+from main import waluta_dict_na_str, waluta_str_na_dict, nadaj_sowe, poczta_wyslij_sowy
 
 # Task 5
 
@@ -41,3 +41,4 @@ assert(rows[-1][2] == "13 knut")
 assert(rows[-1][3] == "TAK")
 
 # Task 8
+poczta_wyslij_sowy("poczta_nadania_lista.csv")

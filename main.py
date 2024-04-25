@@ -1,5 +1,7 @@
 import time
 import random
+from datetime import datetime
+import csv
 
 
 def wyslij_sowe(adresat, tresc):
@@ -110,8 +112,51 @@ def waluta_str_na_dict(currency_text: str) -> dict:
 
 
 def nadaj_sowe(adresat: str, tresc: str, potwierdzenie: bool, odleglosc: str, typ: str, specjalna: str):
+    """
+    Save letter data into csv file.
+
+    :param adresat: receipent.
+    :param tresc: content.
+    :param potwierdzenie: is confirmation.
+    :param odleglosc: distance.
+    :param typ: type.
+    :param specjalna: special.
+    """
     cost = wybierz_sowe_zwroc_koszt(potwierdzenie=potwierdzenie, odleglosc=odleglosc, typ=typ, specjalna=specjalna)
     cost = waluta_dict_na_str(cost)
     confirmation = "TAK" if potwierdzenie else "NIE"
     with open("poczta_nadania_lista.csv", 'a') as file:
         file.write(f"{adresat},{tresc},{cost},{confirmation}\n")
+
+
+def poczta_wyslij_sowy(csv_path: str):
+    """
+    Sent letters, recompute the costs. Save results to csv file.
+
+    :param csv_path: path to csv file with letters that should be sent.
+    """
+    letters = []
+    with open(csv_path, "r") as file:
+        csv_reader = csv.reader(file)
+        for row in csv_reader:
+            letters.append(row)
+
+    costs = []
+    confirmations = []
+    for letter in letters:
+        is_delivered = wyslij_sowe(letter[0], letter[1])
+        if is_delivered:
+            costs.append(letter[2])
+            confirmations.append("TAK")
+        else:
+            # is confirmation
+            confirmations.append("NIE")
+            if letter[3]:
+                costs.append("")
+            else:
+                costs.append(letter[2])
+
+    today = datetime.today()
+    with open(f"output_sowy_z_poczty_{today.month}_{today.year}.csv", "a") as file:
+        for i in range(len(letters)):
+            file.write(f"{letters[i][0]},{letters[i][1]},{letters[i][2]},{confirmations[i]},{costs[i]}\n")
