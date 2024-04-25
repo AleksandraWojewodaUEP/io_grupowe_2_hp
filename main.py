@@ -16,11 +16,18 @@ def licz_sume(dane):
     if 'galeon' not in dane or 'sykl' not in dane or 'knut' not in dane:
         return "Brak wymaganych danych"
 
-    ilosc_galeon = dane.get('galeon', 0)
-    ilosc_sykl = dane.get('sykl', 0)
-    ilosc_knut = dane.get('knut', 0)
+    ilosc_galeon = list(dane.get('galeon', 0))
+    ilosc_sykl = list(dane.get('sykl', 0))
+    ilosc_knut = list(dane.get('knut', 0))
+    suma_knut = 0
 
-    suma_knut = ilosc_galeon * 17 * 21 + ilosc_sykl * 21 + ilosc_knut
+    max_length = max(len(ilosc_galeon), len(ilosc_sykl), len(ilosc_knut))
+    ilosc_galeon.extend([0] * (max_length - len(ilosc_galeon)))
+    ilosc_sykl.extend([0] * (max_length - len(ilosc_sykl)))
+    ilosc_knut.extend([0] * (max_length - len(ilosc_knut)))
+
+    for i in range(len(ilosc_galeon)):
+        suma_knut += (ilosc_galeon[i] * 17 * 21 + ilosc_sykl[i] * 21 + ilosc_knut[i])
 
     suma_galeon = suma_knut // (17 * 21)
     suma_knut %= (17 * 21)
@@ -28,10 +35,6 @@ def licz_sume(dane):
     suma_knut %= 21
 
     return {'galeon': suma_galeon, 'sykl': suma_sykl, 'knut': suma_knut}
-
-dane = {'galeon': 0, 'sykl': 100, 'knut': 106}
-wynik = licz_sume(dane)
-print(wynik)
 
 def wybierz_sowe_zwroc_koszt(potwierdzenie: bool, odleglosc: str, typ: str, specjalna: str):
     """
@@ -99,6 +102,3 @@ przyklad2 = {
     "knut" : 13
 }
 
-
-print(waluta_dict_na_str(przyklad1))
-print(waluta_dict_na_str(przyklad2))
