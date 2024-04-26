@@ -1,18 +1,19 @@
 import time
 import random
+from datetime import datetime
+import csv
+
 
 def wyslij_sowe(adresat, tresc):
     print(f"Twój list do {adresat} już leci!")
     time.sleep(1)
-    if random.uniform(0,1) <= 0.85:
+    if random.uniform(0, 1) <= 0.85:
         return True
     else:
         return False
 
-# print(wyslij_sowe("Hagrid", "Wpadamy na herabtkę"))
 
 def licz_sume(dane):
-  
     if 'galeon' not in dane or 'sykl' not in dane or 'knut' not in dane:
         return "Brak wymaganych danych"
 
@@ -68,9 +69,11 @@ def wybierz_sowe_zwroc_koszt(potwierdzenie: bool, odleglosc: str, typ: str, spec
     }
 
     koszt = {"knut": 0, "sykl": 0, "galeon": 0}
+
     def dodaj_koszty(cennik):
         for waluta, cena in cennik.items():
             koszt[waluta] += cena
+
     try:
         if potwierdzenie:
             dodaj_koszty(koszty["potwierdzenie"])
@@ -81,24 +84,81 @@ def wybierz_sowe_zwroc_koszt(potwierdzenie: bool, odleglosc: str, typ: str, spec
 
     return koszt
 
+
 def waluta_dict_na_str(waluta_dict):
+    sorted_dict = {"galeon": waluta_dict["galeon"],
+                   "sykl": waluta_dict["sykl"],
+                   "knut": waluta_dict["knut"]}
+
     wynik = []
-    for moneta, ilosc in waluta_dict.items():
+    for moneta, ilosc in sorted_dict.items():
         if ilosc != 0:
             wynik.append(f"{ilosc} {moneta}")
 
     return " ".join(wynik)
 
 
-przyklad1 = {
-    "galeon" : 0,
-    "sykl" : 0,
-    "knut" : 13
-}
+def waluta_str_na_dict(currency_text: str) -> dict:
+    """
+    Convert string with currencies to a dictionary.
 
-przyklad2 = {
-    "galeon" : 13,
-    "sykl" : 2,
-    "knut" : 13
-}
+    :param currency_text: text that contains currency values in format '12 galeon 5 sykl'.
+    :return: dict with currencies.
+    """
+    currency_dict = {}
+    texts = currency_text.split(" ")
+    for i in range(1, len(texts), 2):
+        currency_dict[texts[i]] = texts[i - 1]
 
+    return currency_dict
+
+
+def nadaj_sowe(adresat: str, tresc: str, potwierdzenie: bool, odleglosc: str, typ: str, specjalna: str):
+    """
+    Save letter data into csv file.
+
+    :param adresat: receipent.
+    :param tresc: content.
+    :param potwierdzenie: is confirmation.
+    :param odleglosc: distance.
+    :param typ: type.
+    :param specjalna: special.
+    """
+    cost = wybierz_sowe_zwroc_koszt(potwierdzenie=potwierdzenie, odleglosc=odleglosc, typ=typ, specjalna=specjalna)
+    cost = waluta_dict_na_str(cost)
+    confirmation = "TAK" if potwierdzenie else "NIE"
+    with open("poczta_nadania_lista.csv", 'a') as file:
+        file.write(f"{adresat},{tresc},{cost},{confirmation}\n")
+
+
+def poczta_wyslij_sowy(csv_path: str):
+    """
+    Sent letters, recompute the costs. Save results to csv file.
+
+    :param csv_path: path to csv file with letters that should be sent.
+    """
+    letters = []
+    with open(csv_path, "r") as file:
+        csv_reader = csv.reader(file)
+        for row in csv_reader:
+            letters.append(row)
+
+    costs = []
+    confirmations = []
+    for letter in letters:
+        is_delivered = wyslij_sowe(letter[0], letter[1])
+        if is_delivered:
+            costs.append(letter[2])
+            confirmations.append("TAK")
+        else:
+            # is confirmation
+            confirmations.append("NIE")
+            if letter[3]:
+                costs.append("")
+            else:
+                costs.append(letter[2])
+
+    today = datetime.today()
+    with open(f"output_sowy_z_poczty_{today.month}_{today.year}.csv", "a") as file:
+        for i in range(len(letters)):
+            file.write(f"{letters[i][0]},{letters[i][1]},{letters[i][2]},{confirmations[i]},{costs[i]}\n")
