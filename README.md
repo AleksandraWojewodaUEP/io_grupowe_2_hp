@@ -6,7 +6,7 @@ $${\color{green}Dom Slytherin}$$
 1. [Mikołaj Tym](https://github.com/MikolajTym)
 2. [Tomasz Olender](https://github.com/TomHek01)
 3. [Hubert Roszyk](https://github.com/hvbcix) 
-4. [Szmon Pilarczyk](https://github.com/SzymonPilarczyk)
+4. [Szymon Pilarczyk](https://github.com/SzymonPilarczyk)
 
 ## Arcywróg
 
@@ -19,10 +19,23 @@ $${\color{green}Dom Slytherin}$$
 3. Hubert, Tomasz, Szymon są czarodziejami i znają niezłe zaklęcia.
 4. ~~Nie latać na miotle po szkole!~~
 
+## Tasks
+
+1. Task1 - Hubert Roszyk
+2. Task3 - Tomasz Olender 
+3. Task4 - Mikołaj Tym
+4. Task5 - Szymon Pilarczyk
+5. Task6 - Mikołaj Tym
+6. Task7 - Mikołaj Tym
+7. Task8 - Mikołaj Tym
+
 ## Tests
 
 1. Task1 - Mikołaj Tym
-2. Task2 - Tomasz Olender
+2. Task2 - Szymon Pilarczyk
 3. Task3 - Hubert Roszyk
-4. Task4 - Szymon Pilarczyk
+4. Task4 - Tomasz Olender
 5. Task5 - Mikołaj Tym
+6. Task6 - Mikołaj Tym
+7. Task7 - Mikołaj Tym
+8. Task8 - Mikołaj Tym
