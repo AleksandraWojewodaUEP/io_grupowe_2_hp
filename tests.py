@@ -103,5 +103,6 @@ test_3 = wybierz_sowe_zwroc_koszt(False, 'krajowa', 'list', 'wyjec')
 assert(test_3 == {'knut': 16, 'sykl': 0, 'galeon': 0})
 
 
-#test_4 = wybierz_sowe_zwroc_koszt(True, 'krajowa', 'paczka', )
-#assert(test_4 == {'knut': 9, 'sykl': 1, 'galeon': 0})
+print("HELLO")
+test_4 = wybierz_sowe_zwroc_koszt(True, 'krajowa', 'paczka', None)
+assert(test_4 == {'knut': 9, 'sykl': 1, 'galeon': 0})
