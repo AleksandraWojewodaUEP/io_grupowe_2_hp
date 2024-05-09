@@ -9,7 +9,7 @@ def wyslij_sowe(adresat, tresc):
     else:
         return False
 
-# print(wyslij_sowe("Hagrid", "Wpadamy na herabtkę"))
+# print(wyslij_sowe("Hagrid", "Wpadamy na herbatkę"))
 
 def licz_sume(dane):
   
@@ -29,9 +29,6 @@ def licz_sume(dane):
 
     return {'galeon': suma_galeon, 'sykl': suma_sykl, 'knut': suma_knut}
 
-dane = {'galeon': 0, 'sykl': 100, 'knut': 106}
-wynik = licz_sume(dane)
-print(wynik)
 
 def wybierz_sowe_zwroc_koszt(potwierdzenie: bool, odleglosc: str, typ: str, specjalna: str):
     """
@@ -55,9 +52,10 @@ def wybierz_sowe_zwroc_koszt(potwierdzenie: bool, odleglosc: str, typ: str, spec
             "krajowa": {"sykl": 1, "knut": 2},
             "dalekobiezna": {"sykl": 2, "knut": 1},
         },
+        
         "specjalna": {
-            "wyjec": {"knut": 4},
-            "list gończy": {"sykl": 1},
+        "wyjec": {"knut": 4},
+        "list gończy": {"sykl": 1},
         },
         "potwierdzenie": {
             "knut": 7,
@@ -65,6 +63,7 @@ def wybierz_sowe_zwroc_koszt(potwierdzenie: bool, odleglosc: str, typ: str, spec
     }
 
     koszt = {"knut": 0, "sykl": 0, "galeon": 0}
+    
     def dodaj_koszty(cennik):
         for waluta, cena in cennik.items():
             koszt[waluta] += cena
@@ -72,7 +71,9 @@ def wybierz_sowe_zwroc_koszt(potwierdzenie: bool, odleglosc: str, typ: str, spec
         if potwierdzenie:
             dodaj_koszty(koszty["potwierdzenie"])
         dodaj_koszty(koszty[typ][odleglosc])
-        dodaj_koszty(koszty["specjalna"][specjalna])
+        if koszty["specjalna"].get(specjalna) is not None:
+            dodaj_koszty(koszty["specjalna"].get(specjalna))
+
     except KeyError:
         raise Exception("Podaj prawidłowe dane.")
 
@@ -99,6 +100,3 @@ przyklad2 = {
     "knut" : 13
 }
 
-
-print(waluta_dict_na_str(przyklad1))
-print(waluta_dict_na_str(przyklad2))
